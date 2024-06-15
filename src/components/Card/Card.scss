@@ -1,0 +1,8 @@
+@import "../../assets/fonts/colors.scss";
+
+.card-content {
+  background-color: $white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

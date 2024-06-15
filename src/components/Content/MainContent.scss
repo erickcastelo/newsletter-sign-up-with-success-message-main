@@ -1,0 +1,19 @@
+.main-content {
+  .title {
+    font-family: "Roboto Bold";
+    font-size: 40px;
+  }
+
+  .sub-title {
+    margin: 1em 0 1em;
+  }
+
+  .product-list {
+    li {
+      list-style-type: none;
+      background: url("../../assets/icon-list.svg");
+      background-repeat: no-repeat;
+      padding: 0px 0 1em 2em;
+    }
+  }
+}
