@@ -4,7 +4,7 @@ import "./Footer.scss";
 
 export const Footer = () => {
   return (
-    <footer className="footer-content margin-content">
+    <footer className="footer-content">
       <Input
         name="emailAddress"
         label="Email Address"

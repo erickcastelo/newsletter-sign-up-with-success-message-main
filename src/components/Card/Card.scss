@@ -6,3 +6,12 @@
   flex-direction: column;
   justify-content: center;
 }
+
+@media (min-width: 1024px) {
+  .card-content {
+    flex-direction: row;
+    flex-direction: row-reverse;
+    border-radius: 18px;
+    padding: 1em;
+  }
+}

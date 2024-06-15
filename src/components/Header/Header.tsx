@@ -1,10 +1,12 @@
 import "./Header.scss";
-import marc from "../../assets/illustration-sign-up-mobile.svg";
+import logoMobile from "../../assets/illustration-sign-up-mobile.svg";
+import logoDesktop from "../../assets/illustration-sign-up-desktop.svg";
 
 export const Header = () => {
   return (
     <header className="header-container">
-      <img src={marc} />
+      <img className="logo-mobile" src={logoMobile} />
+      <img className="logo-desktop" src={logoDesktop} />
     </header>
   );
 };
