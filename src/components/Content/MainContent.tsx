@@ -1,7 +1,7 @@
 import { Footer } from "../Footer/Footer";
 import "./MainContent.scss";
 
-export const MainContent = () => {
+export const MainContent = ({ onEventSubmit }: any) => {
   return (
     <section className="main-content margin-content">
       <section>
@@ -15,7 +15,7 @@ export const MainContent = () => {
           <li>And much more!</li>
         </ul>
       </section>
-      <Footer></Footer>
+      <Footer onEventSubmit={(data) => onEventSubmit(data)}></Footer>
     </section>
   );
 };

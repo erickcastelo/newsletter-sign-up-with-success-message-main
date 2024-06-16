@@ -22,7 +22,11 @@ type Email = {
   email: string;
 };
 
-export const Footer = () => {
+type FooterProps = {
+  onEventSubmit: SubmitHandler<Email>;
+};
+
+export const Footer = ({ onEventSubmit }: FooterProps) => {
   const form = useForm({
     defaultValues: {
       email: "",
@@ -31,7 +35,7 @@ export const Footer = () => {
   });
 
   const { handleSubmit } = form;
-  const onSubmit: SubmitHandler<Email> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Email> = (data) => onEventSubmit(data);
 
   return (
     <footer className="footer-content">

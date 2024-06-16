@@ -14,10 +14,11 @@ export const Button = ({ ...props }: ButtonProps) => {
     <div className="button-content">
       <button
         {...restProps}
-        className={
-          classNames({ className: !!className }) +
-          " mt-6 w-full text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-5 focus:outline-none"
-        }
+        className={classNames({
+          className: !!className,
+          "mt-6 w-full text-white focus:ring-4 font-medium rounded-lg text-sm px-5 py-5 focus:outline-none":
+            true,
+        })}
       >
         {children}
       </button>
