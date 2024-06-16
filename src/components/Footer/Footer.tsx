@@ -18,7 +18,7 @@ const emailSchema = yup
   })
   .required();
 
-type Email = {
+export type Email = {
   email: string;
 };
 

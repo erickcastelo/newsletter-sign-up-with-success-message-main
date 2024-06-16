@@ -1,7 +1,10 @@
-import { Footer } from "../Footer/Footer";
+import { Email, Footer } from "../Footer/Footer";
 import "./MainContent.scss";
 
-export const MainContent = ({ onEventSubmit }: any) => {
+type MainContentProps = {
+  onEventSubmit: (data: Email) => void;
+};
+export const MainContent = ({ onEventSubmit }: MainContentProps) => {
   return (
     <section className="main-content margin-content">
       <section>
