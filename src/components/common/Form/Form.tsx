@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { FormHTMLAttributes, ReactNode, createContext } from "react";
-import { UseFormReturn } from "react-hook-form";
+import { FormHTMLAttributes, ReactNode } from "react";
+import { FormProvider, UseFormReturn } from "react-hook-form";
 
 export type UseForm = UseFormReturn<any, any, undefined>;
 
@@ -9,14 +9,12 @@ export type FormProps = {
   useForm: UseForm;
 } & FormHTMLAttributes<HTMLFormElement>;
 
-export const ContextApi = createContext<UseForm>({} as UseForm);
-
 export const Form = ({ ...props }: FormProps) => {
   const { children, useForm, ...restProps } = props;
 
   return (
-    <form {...restProps}>
-      <ContextApi.Provider value={useForm}>{children}</ContextApi.Provider>
-    </form>
+    <FormProvider {...useForm}>
+      <form {...restProps}>{children}</form>
+    </FormProvider>
   );
 };

@@ -1,17 +1,18 @@
 import "./Input.scss";
 import classNames from "classnames";
-import { InputHTMLAttributes, useContext } from "react";
-import { ContextApi, UseForm } from "../Form/Form";
+import { InputHTMLAttributes } from "react";
+import { useFormContext } from "react-hook-form";
 
 export type InputProps = {
   label?: string;
+  name: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 export const Input = ({ ...props }: InputProps) => {
   const { label, name, className, ...restProps } = props;
   const {
     formState: { errors },
     register,
-  } = useContext<UseForm>(ContextApi);
+  } = useFormContext();
 
   const message = errors && (errors?.[name ?? ""]?.message as string);
 
@@ -41,7 +42,7 @@ export const Input = ({ ...props }: InputProps) => {
           className: !!className,
         })}
         {...restProps}
-        {...register(name + "")}
+        {...register(name)}
       />
     </div>
   );
