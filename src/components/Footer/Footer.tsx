@@ -4,6 +4,7 @@ import { Input } from "../common/Input/Input";
 import * as yup from "yup";
 import "./Footer.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { Form } from "../common/Form/Form";
 
 const emailSchema = yup
   .object()
@@ -39,16 +40,14 @@ export const Footer = ({ onEventSubmit }: FooterProps) => {
 
   return (
     <footer className="footer-content">
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Form useForm={form} onSubmit={handleSubmit(onSubmit)} noValidate>
         <Input
           name="email"
           label="Email Address"
           placeholder="email@company.com"
-          useForm={form}
         />
-
         <Button type="submit">Subscribe to monthly newsletter</Button>
-      </form>
+      </Form>
     </footer>
   );
 };
