@@ -1,11 +1,12 @@
 import { Button } from "../common/Button/Button";
 import iconSuccess from "../../assets/icon-success.svg";
 import "./CardMessage.scss";
+import { useDispatch } from "react-redux";
+import { reset } from "../redux/email-slice";
 
-type CardMessageProps = {
-  onDismiss: () => void;
-};
-export const CardMessage = ({ onDismiss }: CardMessageProps) => {
+export const CardMessage = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="card-message-container">
       <div className="card-message-content">
@@ -17,7 +18,7 @@ export const CardMessage = ({ onDismiss }: CardMessageProps) => {
         </p>
       </div>
 
-      <Button type="button" onClick={onDismiss}>
+      <Button type="button" onClick={() => dispatch(reset())}>
         Dismiss message
       </Button>
     </div>

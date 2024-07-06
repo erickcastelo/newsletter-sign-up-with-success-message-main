@@ -1,12 +1,12 @@
 import "./Input.scss";
 import classNames from "classnames";
-import { InputHTMLAttributes } from "react";
+import { ComponentPropsWithRef } from "react";
 import { useFormContext } from "react-hook-form";
 
 export type InputProps = {
   label?: string;
   name: string;
-} & InputHTMLAttributes<HTMLInputElement>;
+} & ComponentPropsWithRef<"input">;
 export const Input = ({ ...props }: InputProps) => {
   const { label, name, className, ...restProps } = props;
   const {

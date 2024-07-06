@@ -1,10 +1,10 @@
-import { ButtonHTMLAttributes, ReactNode } from "react";
+import { ComponentPropsWithRef, ReactNode } from "react";
 import classNames from "classnames";
 import "./Button.scss";
 
 type ButtonProps = {
   children: ReactNode;
-} & ButtonHTMLAttributes<HTMLButtonElement>;
+} & ComponentPropsWithRef<"button">;
 
 export const Button = ({ ...props }: ButtonProps) => {
   const { children, ...restProps } = props;

@@ -1,25 +1,23 @@
-import { useState } from "react";
 import { Header } from "./components/Header/Header";
 import "./App.scss";
 import { Card } from "./components/Card/Card";
 import { MainContent } from "./components/Content/MainContent";
 import { CardMessage } from "./components/CardMessage/CardMessage";
+import { useEmailForm } from "./components/hooks/EmailForm";
 
 function App() {
-  const [isSuccess, setIsSuccess] = useState<boolean>(false);
+  const { email } = useEmailForm();
 
   return (
     <>
-      {!isSuccess && (
+      {!email && (
         <Card>
           <Header></Header>
-          <MainContent
-            onEventSubmit={(data) => setIsSuccess(!!data.email)}
-          ></MainContent>
+          <MainContent></MainContent>
         </Card>
       )}
 
-      {isSuccess && <CardMessage onDismiss={() => setIsSuccess(false)} />}
+      {!!email && <CardMessage />}
     </>
   );
 }

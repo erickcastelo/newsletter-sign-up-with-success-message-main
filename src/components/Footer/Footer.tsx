@@ -5,6 +5,7 @@ import * as yup from "yup";
 import "./Footer.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "../common/Form/Form";
+import { useEmailForm } from "../hooks/EmailForm";
 
 const emailSchema = yup
   .object()
@@ -23,11 +24,7 @@ export type Email = {
   email: string;
 };
 
-type FooterProps = {
-  onEventSubmit: SubmitHandler<Email>;
-};
-
-export const Footer = ({ onEventSubmit }: FooterProps) => {
+export const Footer = () => {
   const form = useForm({
     defaultValues: {
       email: "",
@@ -36,11 +33,16 @@ export const Footer = ({ onEventSubmit }: FooterProps) => {
   });
 
   const { handleSubmit } = form;
-  const onSubmit: SubmitHandler<Email> = (data) => onEventSubmit(data);
+
+  const { update } = useEmailForm();
+
+  const onSubmit: SubmitHandler<Email> = (data) => {
+    update(data.email);
+  };
 
   return (
     <footer className="footer-content">
-      <Form useForm={form} onSubmit={handleSubmit(onSubmit)} noValidate>
+      <Form useForm={form} onSubmit={handleSubmit(onSubmit)}>
         <Input
           name="email"
           label="Email Address"
