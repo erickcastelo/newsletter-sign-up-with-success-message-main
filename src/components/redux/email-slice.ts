@@ -9,9 +9,7 @@ export const emailSlice = createSlice({
     get: (state) => {
       return state;
     },
-    update: (state, action: PayloadAction<string>) => {
-      return (state = action.payload);
-    },
+    update: (_state, action: PayloadAction<string>) => action.payload,
     reset: () => {
       return initialState;
     },
