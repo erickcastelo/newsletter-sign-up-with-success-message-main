@@ -6,6 +6,7 @@ import "./Footer.scss";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { Form } from "../common/Form/Form";
 import { useEmailForm } from "../hooks/EmailForm";
+import { createRef, useEffect } from "react";
 
 const emailSchema = yup
   .object()
@@ -36,9 +37,19 @@ export const Footer = () => {
 
   const { update } = useEmailForm();
 
+  const ref = createRef<HTMLInputElement>();
+
   const onSubmit: SubmitHandler<Email> = (data) => {
     update(data.email);
   };
+  useEffect(() => {
+    ref.current?.focus(); // Focus on input field on mounting the component
+
+    return () => {
+      // Clean up on unmounting
+      ref.current?.blur(); // Remove focus on input field on unmounting
+    };
+  }, []);
 
   return (
     <footer className="footer-content">
@@ -47,6 +58,7 @@ export const Footer = () => {
           name="email"
           label="Email Address"
           placeholder="email@company.com"
+          ref={ref}
         />
         <Button type="submit">Subscribe to monthly newsletter</Button>
       </Form>

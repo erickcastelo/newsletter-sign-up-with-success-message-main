@@ -1,18 +1,21 @@
 import "./Input.scss";
 import classNames from "classnames";
-import { ComponentPropsWithRef } from "react";
+import { ComponentPropsWithRef, forwardRef } from "react";
 import { useFormContext } from "react-hook-form";
+import { mergeRefs } from "react-merge-refs";
 
 export type InputProps = {
   label?: string;
   name: string;
-} & ComponentPropsWithRef<"input">;
-export const Input = ({ ...props }: InputProps) => {
+} & Omit<ComponentPropsWithRef<"input">, "onChange" | "onBlur">;
+export const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
   const { label, name, className, ...restProps } = props;
   const {
     formState: { errors },
     register,
   } = useFormContext();
+
+  const { ref: refRegister, ...restRegister } = register(name);
 
   const message = errors && (errors?.[name ?? ""]?.message as string);
 
@@ -42,8 +45,9 @@ export const Input = ({ ...props }: InputProps) => {
           className: !!className,
         })}
         {...restProps}
-        {...register(name)}
+        {...restRegister}
+        ref={mergeRefs([refRegister, ref])}
       />
     </div>
   );
-};
+});
